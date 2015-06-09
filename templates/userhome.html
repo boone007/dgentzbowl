@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load staticfiles %}
+
+
+{% block head_title %}Welcome | {{ block.super }}{% endblock %}
+
+<style>
+    {% block style %}
+    .navbar-static-top {
+    margin-bottom: 0px !important;
+    }
+
+    .jumbotron {
+    background-color:#0E3D14;
+    color: #FFF;
+    }
+
+    {% endblock %}
+</style>
+
+
+
+{% block jumbotron %}
+{% if not request.user.is_authenticated %}
+
+<div class="jumbotron">
+    <div class="container">
+        <div class="row">
+            <div class='col-sm-6'>
+                <h1>DGENTZ COLLEGE BOWL</h1>
+                <p>This for DGENTZ college bowl Site</p>
+                <p>
+                    <a class="btn btn-lg btn-primary" href="" role="button">Join Us &raquo;</a>
+                </p>
+            </div>
+            <div class='col-sm-6' >
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/ZuqMUwY1QQo" frameborder="0" allowfullscreen></iframe>
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endblock %}
+
+
+
+
+{% block content %}
+{% if request.user.is_authenticated %}
+<h1>Welcome! You are logged in!</h1>
+
+<!--{% if queryset %}-->
+<!--<h2>Welcome Player</h2>-->
+<!--<table class='table'>-->
+<!--{% for instance in queryset %}-->
+<!--<tr><td>{{ forloop.counter }}</td><td>{{ instance.bowl }}</td><td>{{ instance.fav }}</td><td>{{ instance.dog }}</td><td>{{ instance.spread }}</td><td>{{ instance.hilo}}</td></tr>-->
+<!--&lt;!&ndash;{% if instance.email == "abc@gmail.edu" %}&ndash;&gt;-->
+<!--&lt;!&ndash;<tr><td>is equal</td></tr>&ndash;&gt;-->
+<!--&lt;!&ndash;{% endif %}&ndash;&gt;-->
+<!--{% endfor %}-->
+<!--</table>-->
+
+<!--{% endif %}-->
+
+<!--{% else %}-->
+<div class="row">
+
+    <div class="col-sm-3 pull-right">
+
+        <p class='lead text-align-center'>{{ usertitle }}</p>
+
+        <form method='POST' action=''>{% csrf_token %}
+            {{ form|crispy }}
+
+            <input class='btn btn-primary' type='submit' value='Create' />
+
+        </form>
+    </div>
+
+    <div class='col-sm-3'>
+        <p class='lead text-align-center'>Leader Board</p>
+    </div>
+
+    <div class='col-sm-3'>
+        <p class='lead text-align-center'>Games and Scores
+            <br/>
+<span class='fa-stack fa-lg fa-5x'>
+<i class='fa fa-comment-o fa-stack-2x'></i>
+<i style='color:yellow;' class="fa fa-bolt fa-stack-1x"></i>
+
+</span>
+        </p>
+
+    </div>
+
+    <div class='col-sm-3'>
+        <p class='lead text-align-center'>More Info<br/><br/>
+
+<span class="fa-stack fa-lg fa-5x">
+<i class="fa fa-circle-o-notch fa-stack-2x"></i>
+  <!-- <i class="fa fa-square-o fa-stack-2x"></i> -->
+  <i class="fa fa-github fa-stack-1x"></i>
+</span>
+        </p>
+
+
+    </div>
+
+
+</div>
+{% endif %}
+
+{% endblock %}

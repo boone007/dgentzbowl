@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class='row'>
+    <div class='col-sm-6 col-sm-offset-3'>
+        {% if queryset %}
+        <h2>Bowl Games</h2>
+        <table class='table'>
+            {% for instance in queryset %}
+            <tr><td>{{ forloop.counter }}</td><td>{{ instance.bowl }}</td><td>{{ instance.fav }}</td><td>{{ instance.dog }}</td><td>{{ instance.spread }}</td><td>{{ instance.hilo }}</td></tr>
+            {% endfor %}
+        </table>
+
+        {% endif %}
+    </div>
+
+</div>
+
+{% endblock %}
